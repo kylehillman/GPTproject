@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>User Ratings</h1>
+<hr>
+{% if rating_list %}
+<ul>
+    {% for title, rating in rating_list %}
+    <li>Title: {{ title }} | Rating: {{ rating }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No ratings found for this user.</p>
+{% endif %}
+{% endblock %}

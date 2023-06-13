@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'hello_world' %}">Hello World</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'chat_view' %}">ChatGPT Page</a></li>
+            <li><a href="{% url 'rate_movies_view' %}">Rate Movies</a></li>
+
+        </ul>
+    </nav>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+        {% block extra_js %}
+        {% endblock %}
+
+    </div>
+</body>
+
+</html>

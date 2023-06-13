@@ -1,0 +1,37 @@
+<!-- chat.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<form id="chat-form">
+    <label for="prompt">Enter your prompt:</label><br>
+    <input type="text" id="prompt" name="prompt" size="100" rows="5"><br>
+    <input type="submit" value="Submit">
+</form>
+<div id="response"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#chat-form').on('submit', function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: "", // the endpoint
+                type: "POST", // http method
+                data: { prompt: $('#prompt').val() }, // data sent with the post request
+
+                // handle a successful response
+                success: function (json) {
+                    $('#response').html("<p>" + json.response + "</p>"); // replace the contents of the div with the response from Python
+                },
+
+                // handle a non-successful response
+                error: function (xhr, errmsg, err) {
+                    console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
